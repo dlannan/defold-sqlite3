@@ -1,0 +1,114 @@
+# C++ symbol in your extension
+name: "LibSqlite"
+
+# App manifest generated Wed Jul 06 2022 22:23:08 GMT+0930 (Australian Central Standard Time)
+# Settings: Vulkan,OpenGL
+platforms:
+    x86_64-osx:
+        context:
+            flags: []
+            excludeLibs: []
+            excludeSymbols: []
+            symbols: []
+            libs: ["sqlite3"]
+            frameworks: []
+            linkFlags: []
+
+    x86_64-linux:
+        context:
+            flags: []
+            excludeLibs: []
+            excludeSymbols: []
+            symbols: []
+            libs: ["sqlite3" ]
+            linkFlags: []
+
+    js-web:
+        context:
+            flags: []
+            excludeLibs: []
+            excludeJsLibs: []
+            excludeSymbols: []
+            symbols: []
+            libs: []
+            linkFlags: []
+
+    wasm-web:
+        context:
+            flags: []
+            excludeLibs: []
+            excludeJsLibs: []
+            excludeSymbols: []
+            symbols: []
+            libs: []
+            linkFlags: []
+
+    x86-win32:
+        context:
+            flags: []
+            excludeLibs: []
+            excludeSymbols: []
+            symbols: []
+            libs: []
+            linkFlags: []
+
+    x86_64-win32:
+        context:
+            flags: []
+            excludeLibs: []
+            excludeSymbols: []
+            symbols: []
+            libs: ["libsqlite3.lib"]
+            linkFlags: []
+
+    armv7-android:
+        context:
+            flags: []
+            excludeLibs: []
+            excludeJars: []
+            excludeSymbols: []
+            symbols: ["GraphicsAdapterVulkan"]
+            libs: ["graphics_vulkan"]
+            linkFlags: []
+            jetifier: true
+
+    arm64-android:
+        context:
+            flags: []
+            excludeLibs: []
+            excludeJars: []
+            excludeSymbols: []
+            symbols: ["GraphicsAdapterVulkan"]
+            libs: ["graphics_vulkan"]
+            linkFlags: []
+            jetifier: true
+
+    armv7-ios:
+        context:
+            flags: []
+            excludeLibs: []
+            excludeSymbols: []
+            symbols: []
+            libs: []
+            frameworks: []
+            linkFlags: []
+
+    arm64-ios:
+        context:
+            excludeLibs: []
+            excludeSymbols: []
+            symbols: ["GraphicsAdapterVulkan"]
+            libs: ["graphics_vulkan","MoltenVK"]
+            frameworks: ["Metal","QuartzCore"]
+            linkFlags: []
+
+    x86_64-ios:
+        context:
+            flags: []
+            excludeLibs: []
+            excludeSymbols: []
+            symbols: []
+            libs: []
+            frameworks: []
+            linkFlags: []
+

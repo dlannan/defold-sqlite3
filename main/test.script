@@ -1,0 +1,66 @@
+
+-- MAke an alias so the tests/examples still work
+local sqlite3 = require("libsqlite.sqlite3")
+
+function init(self)
+	-- Add initialization code here
+	-- Learn more: https://defold.com/manuals/script/
+	-- Remove this function if not needed
+
+	db = sqlite3.open("example-db.sqlite3")
+
+	db:exec[[ CREATE TABLE test (id, content) ]]
+
+	stmt = db:prepare[[ INSERT INTO test VALUES (:key, :value) ]]
+
+	stmt:bind{  key = 1,  value = "Hello World"    }:exec()
+	stmt:bind{  key = 2,  value = "Hello Lua"      }:exec()
+	stmt:bind{  key = 3,  value = "Hello Sqlite3"  }:exec()
+
+	for row in db:rows("SELECT * FROM test") do
+		print(row.id, row.content)
+	end
+end
+
+function final(self)
+	-- Add finalization code here
+	-- Learn more: https://defold.com/manuals/script/
+	-- Remove this function if not needed
+end
+
+function update(self, dt)
+	
+	-- Add update code here
+	-- Learn more: https://defold.com/manuals/script/
+	-- Remove this function if not needed
+end
+
+function fixed_update(self, dt)
+	-- Add update code here
+	-- Learn more: https://defold.com/manuals/script/
+	-- Remove this function if not needed
+end
+
+function on_message(self, message_id, message, sender)
+	-- Add message-handling code here
+	-- Learn more: https://defold.com/manuals/message-passing/
+	-- Remove this function if not needed
+end
+
+function on_input(self, action_id, action)
+	-- Add input-handling code here. The game object this script is attached to
+	-- must have acquired input focus:
+	--
+	--    msg.post(".", "acquire_input_focus")
+	--
+	-- All mapped input bindings will be received. Mouse and touch input will
+	-- be received regardless of where on the screen it happened.
+	-- Learn more: https://defold.com/manuals/input/
+	-- Remove this function if not needed
+end
+
+function on_reload(self)
+	-- Add reload-handling code here
+	-- Learn more: https://defold.com/manuals/hot-reload/
+	-- Remove this function if not needed
+end
