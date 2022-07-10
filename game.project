@@ -16,3 +16,7 @@ title = sqlite
 bundle_exclude_resources = /examples
 write_log = 0
 
+[input]
+gamepads = /in/default.gamepadsc
+game_binding = /in/all.input_bindingc
+

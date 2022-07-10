@@ -1108,6 +1108,7 @@ static void xtrace_callback_wrapper(void * cb_data, const char * str)
   
   push_callback(L, db, KEY_XTRACE(cb_data));
   lua_pushstring(L, str);
+  printf("[ CALLBACK ]\n");
   
   if ( lua_pcall(L, 1, 0, 0) )
     lua_pop(L, 1);		/* pop error message and delete it (errors are ignored) */
@@ -1124,7 +1125,7 @@ FUNC( l_sqlite3_trace )
     xtrace = xtrace_callback_wrapper;
   else
     xtrace = 0;
-  
+
   register_callback(L, db, KEY_XTRACE(cb_data), 2);
   
   sqlite3_trace(db->sqlite3, xtrace, cb_data);

@@ -1,0 +1,120 @@
+-- Make an alias so the tests/examples still work
+local sqlite3 = require("libsqlite.sqlite3")
+
+function init(self)
+	msg.post(".", "acquire_input_focus")
+	glog = ""
+	self.db = sqlite3.open("example-db.sqlite3")
+
+	self.node_output = gui.get_node("output")
+	
+	self.node_cmd = gui.get_node("cmdline")
+	self.node_cmd_bg = gui.get_node("cmdline_bg")
+	self.cmd = ""
+
+	self.cmd_active = true
+	self.log = ""
+	self.hist = {}
+	self.hist_select = nil 
+end
+
+
+function process_cmd( self )
+	local results, errors = self.db:exec( self.cmd )
+	if(results) then
+
+		self.log = self.log.."\n[ Sqlite3 ] " .. self.cmd
+		if( string.lower(string.sub(self.cmd, 1, 7)) == "select ") then 
+			self.log = self.log .. "\n"
+			-- Returns a row as an integer indexed array
+			for row in self.db:irows(self.cmd) do
+				local rowstr = ""
+				for idx in pairs(row) do
+					pprint(idx, row[idx])
+					rowstr = rowstr .. " | ".. tostring(row[idx])
+				end
+				self.log = self.log .. "\n" .. rowstr .. " | "
+			end
+			self.log = self.log .. '\n'
+		end
+		self.log = self.log.."\n[ Sqlite3 ] OK."
+	end 
+	if(errors) then self.log = self.log.."\n[ Sqlite3 Error ] " .. errors end
+	table.insert(self.hist, self.cmd) 
+	self.cmd = ""
+	self.hist_select = nil
+end 
+
+function final(self)
+	self.db:close()
+end
+
+function update(self, dt)
+
+	if(self.cmd_active == true) then
+		gui.set_color(self.node_cmd_bg, vmath.vector4(0.19921875, 0.19921875, 0.19921875, 1.0))
+	else
+		gui.set_color(self.node_cmd_bg, vmath.vector4(0.1015625, 0.1015625, 0.1015625, 1.0))
+	end
+
+	gui.set_text(self.node_cmd, "$ > " .. self.cmd)
+	gui.set_text(self.node_output, self.log)
+end
+
+function on_message(self, message_id, message, sender)
+	-- Add message-handling code here
+	-- Learn more: https://defold.com/manuals/message-passing/
+	-- Remove this function if not needed
+end
+
+function on_input(self, action_id, action)
+	
+	if( action.released == true and action_id == hash("key_backspace") ) then
+		if(#self.cmd > 0) then self.cmd = string.sub(self.cmd, 1, -2) end 
+		return
+	end
+	
+	if( action.released == true and action_id == hash("key_enter") ) then 
+		process_cmd( self )
+		return
+	end
+
+	if( action.released == true and action_id == hash("key_up") ) then
+		if(#self.hist > 0) then
+			if(self.hist_select == nil) then 
+				self.hist_select =  #self.hist 
+			else 
+				self.hist_select = self.hist_select - 1
+			end
+			if(self.hist_select < 1) then self.hist_select = 1 end
+			self.cmd = self.hist[self.hist_select]
+		end
+		return
+	end
+
+	if( action.released == true and action_id == hash("key_down") ) then
+		if(#self.hist > 0) then
+			if(self.hist_select) then 
+				self.hist_select = self.hist_select + 1 
+			end
+			if(self.hist_select > #self.hist) then 
+				self.cmd = ""
+				self.hist_select = nil 
+			else
+				self.cmd = self.hist[self.hist_select]
+			end
+		end
+		return
+	end
+	
+	if action_id == hash("text") then
+		-- Concatenate the typed character to the "user" node...
+		self.cmd = self.cmd .. action.text
+	end
+end
+
+function on_reload(self)
+	-- Add reload-handling code here
+	-- Learn more: https://defold.com/manuals/hot-reload/
+	-- Remove this function if not needed
+end
