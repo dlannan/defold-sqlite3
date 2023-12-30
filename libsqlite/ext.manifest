@@ -98,7 +98,7 @@ platforms:
             excludeLibs: []
             excludeSymbols: []
             symbols: ["GraphicsAdapterVulkan"]
-            libs: ["graphics_vulkan","MoltenVK"]
+            libs: ["sqlite3","graphics_vulkan","MoltenVK"]
             frameworks: ["Metal","QuartzCore"]
             linkFlags: []
 
