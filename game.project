@@ -9,7 +9,8 @@ width = 960
 height = 640
 
 [android]
-input_method = HiddenInputField
+input_method = KeyEvent
+target_sdk_version = 30
 
 [project]
 title = sqlite

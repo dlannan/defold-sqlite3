@@ -79,7 +79,7 @@ platforms:
             excludeJars: []
             excludeSymbols: []
             symbols: ["GraphicsAdapterVulkan"]
-            libs: ["graphics_vulkan"]
+            libs: [ "sqlite3", "graphics_vulkan"]
             linkFlags: []
             jetifier: true
 
