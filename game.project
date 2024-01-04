@@ -7,15 +7,22 @@ shared_state = 1
 [display]
 width = 960
 height = 640
+high_dpi = 1
+samples = 2
+fullscreen = 0
+dynamic_orientation = 1
+display_device_info = 0
 
 [android]
-input_method = KeyEvent
-target_sdk_version = 30
+input_method = HiddenInputField
+target_sdk_version = 33
+immersive_mode = 0
 
 [project]
 title = sqlite
-bundle_exclude_resources = /examples
+bundle_exclude_resources = 
 write_log = 0
+bundle_resources = example-db.sqlite3
 
 [input]
 gamepads = /in/default.gamepadsc
