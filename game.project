@@ -15,8 +15,10 @@ display_device_info = 0
 
 [android]
 input_method = HiddenInputField
-target_sdk_version = 33
+target_sdk_version = 29
 immersive_mode = 0
+minimum_sdk_version = 21
+package = com.kakutai.sqlitedefold
 
 [project]
 title = sqlite
