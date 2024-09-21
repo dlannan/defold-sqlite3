@@ -24,7 +24,8 @@ package = com.kakutai.sqlitedefold
 title = sqlite
 bundle_exclude_resources = 
 write_log = 0
-bundle_resources = example-db.sqlite3
+bundle_resources = example-db.sqlite3, libsqlite/
+custom_resources = 
 
 [input]
 gamepads = /in/default.gamepadsc
