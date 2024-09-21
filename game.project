@@ -31,3 +31,6 @@ custom_resources =
 gamepads = /in/default.gamepadsc
 game_binding = /in/all.input_bindingc
 
+[library]
+include_dirs = libsqlite
+
