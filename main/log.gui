@@ -5,8 +5,19 @@ fonts {
 }
 nodes {
   size {
-    x: 960.0
-    y: 640.0
+    x: 640.0
+    y: 1280.0
+  }
+  type: TYPE_BOX
+  id: "main"
+  pivot: PIVOT_SW
+  inherit_alpha: true
+  visible: false
+}
+nodes {
+  size {
+    x: 640.0
+    y: 1280.0
   }
   color {
     x: 0.0
@@ -16,7 +27,9 @@ nodes {
   type: TYPE_BOX
   id: "bg"
   pivot: PIVOT_SW
+  parent: "main"
   inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
 }
 nodes {
   position {
@@ -24,8 +37,8 @@ nodes {
     y: 10.0
   }
   size {
-    x: 940.0
-    y: 580.0
+    x: 620.0
+    y: 1220.0
   }
   color {
     x: 0.101960786
@@ -35,16 +48,18 @@ nodes {
   type: TYPE_BOX
   id: "box"
   pivot: PIVOT_SW
+  parent: "main"
   inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
 }
 nodes {
   position {
-    x: 20.0
-    y: 20.0
+    x: 5.0
+    y: 5.0
   }
   size {
-    x: 920.0
-    y: 560.0
+    x: 610.0
+    y: 1210.0
   }
   type: TYPE_TEXT
   text: "sqlite3 output."
@@ -63,15 +78,38 @@ nodes {
     y: 1.0
     z: 1.0
   }
+  parent: "box"
   inherit_alpha: true
 }
 nodes {
   position {
-    x: 10.0
-    y: 630.0
+    x: 5.0
+    y: 5.0
   }
   size {
-    x: 940.0
+    x: 610.0
+    y: 1210.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  id: "output_clip"
+  pivot: PIVOT_SW
+  parent: "box"
+  inherit_alpha: true
+  clipping_mode: CLIPPING_MODE_STENCIL
+  alpha: 0.0
+}
+nodes {
+  position {
+    x: 10.0
+    y: 1240.0
+  }
+  size {
+    x: 620.0
     y: 30.0
   }
   color {
@@ -81,16 +119,18 @@ nodes {
   }
   type: TYPE_BOX
   id: "cmdline_bg"
-  pivot: PIVOT_NW
+  pivot: PIVOT_SW
+  parent: "main"
   inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
 }
 nodes {
   position {
-    x: 20.0
-    y: 615.0
+    x: 5.0
+    y: 8.0
   }
   size {
-    x: 920.0
+    x: 610.0
     y: 30.0
   }
   type: TYPE_TEXT
@@ -98,7 +138,7 @@ nodes {
   ""
   font: "system_font"
   id: "cmdline"
-  pivot: PIVOT_W
+  pivot: PIVOT_SW
   outline {
     x: 1.0
     y: 1.0
@@ -109,28 +149,8 @@ nodes {
     y: 1.0
     z: 1.0
   }
+  parent: "cmdline_bg"
   inherit_alpha: true
-}
-nodes {
-  position {
-    x: 20.0
-    y: 20.0
-  }
-  size {
-    x: 920.0
-    y: 560.0
-  }
-  color {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-  }
-  type: TYPE_BOX
-  id: "output_clip"
-  pivot: PIVOT_SW
-  inherit_alpha: true
-  clipping_mode: CLIPPING_MODE_STENCIL
-  alpha: 0.0
 }
 material: "/builtins/materials/gui.material"
 adjust_reference: ADJUST_REFERENCE_PARENT

@@ -5,26 +5,26 @@ main_collection = /main/main.collectionc
 shared_state = 1
 
 [display]
-width = 960
-height = 640
-high_dpi = 1
-samples = 2
+width = 640
+height = 1280
+high_dpi = 0
 fullscreen = 0
-dynamic_orientation = 1
-display_device_info = 0
+display_profiles = /main/default.display_profilesc
 
 [android]
 input_method = HiddenInputField
-target_sdk_version = 29
+target_sdk_version = 19
 immersive_mode = 0
-minimum_sdk_version = 21
+minimum_sdk_version = 19
 package = com.kakutai.sqlitedefold
+debuggable = 1
+extract_native_libs = 0
 
 [project]
 title = sqlite
 bundle_exclude_resources = 
 write_log = 0
-bundle_resources = example-db.sqlite3, libsqlite/
+bundle_resources = libsqlite/sqlite3.lua,db/
 custom_resources = 
 
 [input]

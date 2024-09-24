@@ -1,0 +1,7 @@
+profiles {
+  name: "Portrait"
+  qualifiers {
+    width: 720
+    height: 1280
+  }
+}

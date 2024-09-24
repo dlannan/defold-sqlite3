@@ -4,7 +4,7 @@ local sqlite3 = require("libsqlite.sqlite3")
 function init(self)
 	msg.post(".", "acquire_input_focus")
 	glog = ""
-	self.db = sqlite3.open("example-db.sqlite3")
+	self.db = sqlite3.open("db/example-db.sqlite3")
 
 	self.node_output = gui.get_node("output")
 	
